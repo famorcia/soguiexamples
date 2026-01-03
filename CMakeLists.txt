@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0...3.29)
 
 set(Gui "Qt" CACHE STRING "Target GUI for the GUI toolkit examples")
-set(GuiValues "Qt;Xt;Win;Wx" CACHE INTERNAL "List of supported values for the Gui cache variable")
+set(GuiValues "Qt;Xt;Win;Wx;Fl" CACHE INTERNAL "List of supported values for the Gui cache variable")
 set_property(CACHE Gui PROPERTY STRINGS ${GuiValues})
 message(STATUS "Gui='${Gui}'")
 
@@ -16,6 +16,8 @@ elseif(Gui STREQUAL "Win")
   set(WIDGET HWND)
 elseif(Gui STREQUAL "Wx")
   set(WIDGET wxWindow*)
+elseif(Gui STREQUAL "Fl")
+  set(WIDGET Fl_Widget*)
 else()
   message(FATAL_ERROR "Only Qt, Win, Xt and Wx supported: please set Gui to one of these values")
 endif()
